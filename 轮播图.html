@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图</title>
+	<script type="text/javascript" src="static/jquery-3.4.1.min.js"></script>
+	<style type="text/css">
+		*{margin:0;padding:0;list-style:none;}
+
+		#box{
+			height:450px;
+			width:1200px;
+			margin:0 auto;
+			position:relative;
+			top:50px;
+			overflow:hidden;
+		}
+
+		#box ul{
+			width:6000px;
+			position:absolute;
+			top:0;
+			left:0;
+		}
+
+		#box ul li{
+			float:left;
+		}
+
+		#box img{
+			width:1200px;
+			display:block;
+		}
+
+		.pre{
+			width:40px;
+			height:40px;
+			background:rgba(255,255,255,0.4);
+			position:absolute;
+			left:20px;
+			top:205px;
+			font-size:30px;
+			color:#000;
+			text-decoration:none;
+			text-align:center;
+			line-height:50px;
+			border-radius:5%;
+			transition:0.3s;
+		}
+
+		.pre:hover{
+			background:rgba(255,255,255,1);
+		}
+
+		.next{
+			width:40px;
+			height:40px;
+			background:#c3c3c3;
+			position:absolute;
+			right:20px;
+			top:205px;
+			font-size:30px;
+			color:#000;
+			text-decoration:none;
+			text-align:center;
+			line-height:50px;
+			border-radius:5%;
+			transition:0.3s;
+		}
+
+		.next:hover{
+			background:rgba(255,255,255,1);
+		}
+
+		#box ol{
+			width:100px;
+			position:absolute;
+			left:550px;
+			bottom:10px;
+		}
+
+		#box ol li{
+			width:10px;
+			height:10px;
+			border-radius:50%;
+			background:#c3c3c3;
+			float:left;
+			margin:0 3px;
+			position:relative;
+			transition:0.3s;
+		}
+
+		#box .active{
+			background:#ff6700;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul>
+			<li><img src="images/1.jpg"></li>
+			<li><img src="images/2.jpg"></li>
+			<li><img src="images/3.jpg"></li>
+			<li><img src="images/4.jpg"></li>
+			<li><img src="images/5.jpg"></li>
+		</ul>
+		<ol>
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ol>
+		<a class="pre" href="javascript:;"></a>
+		<a class="next" href="javascript:;"></a>
+	</div>
+
+	<script type="text/javascript">
+		var oDiv = document.getElementById('box');
+		var oUl = oDiv.getElementsByTagName('ul')[0];
+		var aLi = oDiv.getElementsByTagName('ol')[0].getElementsByTagName('li');
+		var oNext = oDiv.querySelector('.next');
+		var oPre = oDiv.querySelector('.pre');
+		var n = 0;
+		// var arr = [];
+
+		for (var i=0;i<aLi.length;i++){
+			aLi[i].index = i;
+			aLi[i].onclick = function(){
+				n = this.index;
+				for(var i=0;i<aLi.length;i++){
+					aLi[i].className = '';
+				}
+				this.className = 'active';
+				oUl.style.left = -1200*this.index + 'px';
+			}
+		}
+
+		oPre.onclick = function(){
+			n--;
+			if(n==-1){
+				n=0;
+			}
+
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].className = '';
+			}
+			aLi[n].className = 'active';
+			oUl.style.left = -1200*n + 'px'
+		}
+
+		oNext.onclick = function(){
+			n++;
+			if(n==5){
+				n=4;
+			}
+
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].className = '';
+			}
+			aLi[n].className = 'active';
+			oUl.style.left = -1200*n + 'px'
+		}
+	</script>
+</body>
+</html>
