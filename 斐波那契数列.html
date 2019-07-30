@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>斐波那契数列</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function getNthFibonacci(count){
+			if(count<=1){
+				return 1
+			}else{
+				var first = 1;
+				var second = 1;
+				var n = 0;
+				for(var i = 2;i<count;i++){
+					n = first + second;
+					first = second;
+					second = n;
+				}
+				return n
+			}
+		}
+	</script>
+</body>
+</html>
