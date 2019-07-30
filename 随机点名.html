@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随机点名</title>
+	<style type="text/css">
+		div{
+			width:300px;
+			height:300px;
+			color:#ff6700;
+			margin:100px auto;
+			font-size:50px;
+			text-align:center;
+			line-height:300px;
+			border:3px solid #ff6700;
+		}
+
+		button{
+			display:block;
+			margin:-50px auto;
+		}
+	</style>
+</head>
+<body>
+	<div>随机点名</div>
+	<button onclick="func()">开始</button>
+
+	<script type="text/javascript">
+		var names = ['戴沐白','奥斯卡','唐三','马红俊','小五','宁荣荣','朱竹清','唐昊','玉小刚','弗兰德','赵无极','千仞雪'];
+
+		var d = document.getElementsByTagName('div')[0];
+		var b = document.getElementsByTagName('button')[0];
+
+		var dianming = 0;
+		var start = true;
+
+		function func(){
+			console.log(123)
+			if(start){
+				dianming = setInterval(function(){
+					var target = names[rand(0,names.length-1)];
+					d.innerHTML = target;
+				},200);
+
+				start = false;
+				b.innerHTML = '结束';
+			}else{
+				clearInterval(dianming);
+				
+				start = true;
+				b.innerHTML = '开始';
+			}		
+		}
+
+		function rand(m,n){
+			var index = Math.floor(Math.random()*(n-m+1))+m;
+			return index;
+		}
+
+
+	</script>
+</body>
+</html>
